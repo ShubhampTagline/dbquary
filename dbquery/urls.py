@@ -20,8 +20,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", include("dbquery_practice.urls"))
+    path("admin/", admin.site.urls),
+    path("", include("dbquery_practice.urls")),
 ]
 
-if settings.DEBUG: static(settings.STATIC_URL, doucment_root = settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, doucument_root=settings.MEDIA_ROOT
+    ) + static(settings.STATIC_URL, doucment_root=settings.STATIC_ROOT)
